@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #ffffff;
+}
+
+header {
+    background: #af0707;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+.voltar {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+main {
+    max-width: 850px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+}
+
+h2 {
+    color: #000000;
+    margin-top: 25px;
+}
+
+pre {
+    background: #ffffff;
+    padding: 12px;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+footer {
+    padding: 10px;
+    text-align: center;
+    background: #af0707;
+    margin-top: 30px;
+}
+footer p{
+    color: #ffffff;
+}

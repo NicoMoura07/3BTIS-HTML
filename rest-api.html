@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>REST API — Resumo e Exemplos em Java</title>
+    <link rel="stylesheet" href="rest-api.css">
+</head>
+<body>
+    <header>
+        <h1>REST API — Conceitos Básicos e Integração com Java</h1>
+        <a class="voltar" href="index.html">← Voltar</a>
+    </header>
+
+    <main>
+        <section>
+            <h2>O que é REST API?</h2>
+            <p>
+                REST é um modelo usado para criar sistemas que trocam dados pela web.  
+                Ele funciona usando métodos HTTP e geralmente retorna informações em JSON.
+            </p>
+            <ul>
+                <li><strong>GET:</strong> buscar dados</li>
+                <li><strong>POST:</strong> enviar dados</li>
+                <li><strong>PUT:</strong> atualizar</li>
+                <li><strong>DELETE:</strong> remover</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Como funciona?</h2>
+            <p>Uma API oferece URLs (endpoints) para o cliente acessar. Exemplo:</p>
+
+        <pre><code>GET /api/usuarios</code></pre>
+
+        <p>Resposta típica em JSON:</p>
+
+        <pre><code>{
+        "id": 1,
+        "nome": "Ozzy"
+        }</code></pre>
+        </section>
+
+        <section>
+            <h2>Java (Back-end):</h2>
+            <p>Com Spring Boot é possível criar APIs de forma simples.</p>
+
+        <pre><code>@RestController
+        public class ApiController {
+
+            @GetMapping("/api/msg")
+            public String msg() {
+                return "Exemplo de API em Java.";
+            }
+        }</code></pre>
+
+        <p>Exemplo retornando JSON:</p>
+
+        <pre><code>public record User(String nome,int idade){}
+
+        @GetMapping("/api/user")
+        public User user(){
+            return new User("Ozzy",15);
+        }</code></pre>
+        </section>
+
+        <section>
+            <h2>JavaScript (Front-end):</h2>
+            <p>Para consumir uma API no navegador:</p>
+
+        <pre><code>fetch("/api/user")
+            .then(r => r.json())
+            .then(d => console.log(d.nome));
+        </code></pre>
+        </section>
+
+        <section>
+            <h2>Exemplo Prático (piadas.html):</h2>
+
+        <p>
+        Foi feita uma página com um botão que buscava piadas de uma API pública.  
+        Ao clicar, o JavaScript usava <code>fetch()</code> para pegar o texto e mostrar na tela.
+        </p>
+
+        <pre><code>fetch("https://v2.jokeapi.dev/joke/Any?lang=pt")
+        .then(r => r.json())
+        .then(data => {
+            let texto = data.type === "single"
+                ? data.joke
+                : `${data.setup} ... ${data.delivery}`;
+
+            document.getElementById("piada").innerText = texto;
+        });
+        </code></pre>
+        </section>
+    </main>
+
+    <footer>
+        <p>Nicholas Moura</p>
+    </footer>
+</body>
+</html>
